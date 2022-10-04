@@ -1,0 +1,38 @@
+<div class="sign-up-container bg-primary-100 grid-nogutter w-full p-5 flex justify-content-center align-items-center">
+  <div
+    class="card surface-card min-w-max bg-white border-round-xl shadow-6 p-3 flex flex-column justify-content-center align-items-center">
+    <div class="card-header flex flex-row justify-content-center align-items-center">
+      <i class="pi pi-user text-xl mr-2"></i>
+      <h2>User Registration</h2>
+    </div>
+    <div class="formgrid grid w-25rem">
+      <div class="field col-12 p-float-label">
+        <input [(ngModel)]="firstName" type="text" name="firstname" id="firstname" class="w-full" pInputText>
+        <label for="firstname">First Name</label>
+      </div>
+      <div class="field col-12 p-float-label">
+        <input [(ngModel)]="lastName" type="text" name="lastname" id="lastname" class="w-full" pInputText>
+        <label for="lastname">Last Name</label>
+      </div>
+      <div class="field col-12 p-float-label">
+        <input [(ngModel)]="email" type="email" name="email" id="email" class="w-full" pInputText>
+        <label for="email">Email</label>
+      </div>
+      <div class="field col-12 p-float-label">
+        <input [(ngModel)]="phoneNumber" type="tel" name="phone-number" id="phone-number" class="w-full" pInputText>
+        <label for="phone-number">Phone Number</label>
+      </div>
+      <div class="field col-12 p-float-label">
+        <input [(ngModel)]="password" type="password" name="password" id="password" class="w-full" pInputText>
+        <label for="password">Password</label>
+      </div>
+      <div class="field col-12 p-float-label">
+        <input [(ngModel)]="confirmPassword" type="password" name="confirmPassword" id="confirmPassword" class="w-full" pInputText>
+        <label for="confirmPassword">Confirm Password</label>
+      </div>
+      <div class="field col-12 flex justify-content-end">
+        <p-button (onClick)="print()" icon="pi pi-check-square" label="Signup"></p-button>
+      </div>
+    </div>
+  </div>
+</div>

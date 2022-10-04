@@ -1,0 +1,28 @@
+<div class="sign-up-container bg-primary-100 grid-nogutter min-w-screen min-h-screen p-5 flex justify-content-center align-items-center">
+  <div class="card surface-card bg-white border-round-xl shadow-6 p-3 flex flex-column justify-content-center align-items-center">
+    <div class="card-header flex flex-row justify-content-center align-items-center">
+      <i class="pi pi-user text-xl mr-2"></i>
+      <h2>User Login</h2>
+    </div>
+    <div class="registration-prompt">
+      <p>Don't have an account? <a routerLink="/" class="no-underline text-indigo-500">Create here.</a></p>
+    </div>
+    <div class="formgrid grid w-25rem">
+      <div class="field col-12 p-float-label">
+        <input type="email" name="email" id="email" class="w-full" pInputText>
+        <label for="email">Email</label>
+      </div>
+      <div class="field col-12 p-float-label">
+        <input type="tel" name="phone-number" id="phone-number" class="w-full" pInputText>
+        <label for="phone-number">Phone Number</label>
+      </div>
+      <div class="field col-12 p-float-label">
+        <input type="password" name="password" id="password" class="w-full" pInputText>
+        <label for="password">Password</label>
+      </div>
+      <div class="field col-12 flex justify-content-end">
+        <p-button icon="pi pi-sign-in" label="Signin"></p-button>
+      </div>
+    </div>
+  </div>
+</div>
