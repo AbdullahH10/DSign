@@ -5,34 +5,43 @@
       <i class="pi pi-user text-xl mr-2"></i>
       <h2>User Registration</h2>
     </div>
+    <div class="registration-prompt">
+      <p>Already have an account? <a routerLink="/signin" class="no-underline text-indigo-500">Signin here.</a></p>
+    </div>
     <div class="formgrid grid w-25rem">
       <div class="field col-12 p-float-label">
-        <input [(ngModel)]="firstName" type="text" name="firstname" id="firstname" class="w-full" pInputText>
+        <input [(ngModel)]="newUser.firstname" type="text" name="firstname" id="firstname" class="w-full" pInputText>
         <label for="firstname">First Name</label>
       </div>
       <div class="field col-12 p-float-label">
-        <input [(ngModel)]="lastName" type="text" name="lastname" id="lastname" class="w-full" pInputText>
+        <input [(ngModel)]="newUser.lastname" type="text" name="lastname" id="lastname" class="w-full" pInputText>
         <label for="lastname">Last Name</label>
       </div>
       <div class="field col-12 p-float-label">
-        <input [(ngModel)]="email" type="email" name="email" id="email" class="w-full" pInputText>
+        <input [(ngModel)]="newUser.email" type="email" name="email" id="email" class="w-full" pInputText>
         <label for="email">Email</label>
       </div>
       <div class="field col-12 p-float-label">
-        <input [(ngModel)]="phoneNumber" type="tel" name="phone-number" id="phone-number" class="w-full" pInputText>
+        <input [(ngModel)]="newUser.phoneNo" type="tel" name="phone-number" id="phone-number" class="w-full" pInputText>
         <label for="phone-number">Phone Number</label>
       </div>
       <div class="field col-12 p-float-label">
-        <input [(ngModel)]="password" type="password" name="password" id="password" class="w-full" pInputText>
+        <input [(ngModel)]="newUser.password" type="password" name="password" id="password" class="w-full" pInputText>
         <label for="password">Password</label>
       </div>
       <div class="field col-12 p-float-label">
-        <input [(ngModel)]="confirmPassword" type="password" name="confirmPassword" id="confirmPassword" class="w-full" pInputText>
+        <input #confirmPassword type="password" name="confirmPassword" id="confirmPassword" class="w-full" pInputText>
         <label for="confirmPassword">Confirm Password</label>
+        <small *ngIf="confirmPassword.value !== newUser.password" class="p-error">Password don't match. Please re-type.</small>
       </div>
-      <div class="field col-12 flex justify-content-end">
-        <p-button (onClick)="print()" icon="pi pi-check-square" label="Signup"></p-button>
+      <div *ngIf="confirmPassword.value === newUser.password && confirmPassword.value.length; else disableButton" class="field col-12 flex justify-content-end">
+        <p-button (onClick)="addUser()" icon="pi pi-check-square" label="Signup"></p-button>
       </div>
+      <ng-template #disableButton>
+        <div class="field col-12 flex justify-content-end">
+          <p-button icon="pi pi-check-square" label="Signup" [disabled]="true"></p-button>
+        </div>
+      </ng-template>
     </div>
   </div>
 </div>

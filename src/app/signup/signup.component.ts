@@ -1,4 +1,8 @@
+import { CookieService } from 'ngx-cookie-service';
+import { User } from './../../models/user.model';
+import { SignupService } from './../services/signup.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -7,33 +11,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignupComponent implements OnInit {
 
-  userId: number = 0;
-  email: string = '';
-  password: string = '';
-  confirmPassword: string = '';
-  firstName: string = '';
-  lastName: string = '';
-  phoneNumber: number = 0;
-  organiztion?: string;
-  designation?: string;
-  profileImageLocation?: string;
-  signatureImageLocation?: string;
+  newUser: User = {
+    email: '',
+    password: ''
+  };
 
-  constructor() { }
+  constructor(
+    private signupService: SignupService,
+    private router: Router,
+    private cookieService: CookieService
+  ) { }
 
   ngOnInit(): void {
+    if(this.cookieService.check('id') || this.cookieService.check('email')){
+      this.router.navigate(['/dashboard']);
+    }
   }
 
-  print() {
-    console.log(
-      this.userId+' '+
-      this.email+' '+
-      this.password+' '+
-      this.confirmPassword+' '+
-      this.firstName+' '+
-      this.lastName+' '+
-      this.phoneNumber+' '+
-      this.organiztion+' '
-    )
+  addUser() {
+    this.signupService.addUser(this.newUser).subscribe(
+      data => {
+        this.cookieService.set('id',`${data.userid}`);
+        this.cookieService.set('email',`${data.email}`);
+        this.router.navigate(['/dashboard']);
+      }
+    );
   }
 }
