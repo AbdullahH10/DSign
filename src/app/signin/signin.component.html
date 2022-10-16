@@ -9,7 +9,7 @@
     </div>
     <div class="formgrid grid w-25rem">
       <div class="field col-12 p-float-label">
-        <input type="email" name="email" id="email" class="w-full" pInputText>
+        <input [(ngModel)]="userVerification.email" type="email" name="email" id="email" class="w-full" pInputText>
         <label for="email">Email</label>
       </div>
       <div class="field col-12 p-float-label">
@@ -17,11 +17,12 @@
         <label for="phone-number">Phone Number</label>
       </div>
       <div class="field col-12 p-float-label">
-        <input type="password" name="password" id="password" class="w-full" pInputText>
+        <input [(ngModel)]="userVerification.password" type="password" name="password" id="password" class="w-full" pInputText>
         <label for="password">Password</label>
+        <small #passwordError class="p-error" hidden>Wrong password.</small>
       </div>
       <div class="field col-12 flex justify-content-end">
-        <p-button icon="pi pi-sign-in" label="Signin"></p-button>
+        <p-button (onClick)="verifyUser(passwordError)" icon="pi pi-sign-in" label="Signin"></p-button>
       </div>
     </div>
   </div>

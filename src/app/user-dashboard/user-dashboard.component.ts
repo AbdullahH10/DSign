@@ -27,6 +27,9 @@ export class UserDashboardComponent implements OnInit {
         }
       );
     }
+    else {
+      this.router.navigate(['/']);
+    }
   }
 
   signOut() {

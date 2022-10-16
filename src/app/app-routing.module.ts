@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SignupComponent } from './signup/signup.component';
 
 const routes: Routes = [
-  { path:'',component:SignupComponent },
+  { path:'',component: SignupComponent },
   { path:'signin', component: SigninComponent },
   { path: 'dashboard', component: UserDashboardComponent}
 ];

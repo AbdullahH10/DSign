@@ -16,6 +16,8 @@ import { SigninComponent } from './signin/signin.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { CookieService } from 'ngx-cookie-service';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,10 +34,10 @@ import { CookieService } from 'ngx-cookie-service';
     ButtonModule,
     RippleModule,
     InputTextModule,
-    CardModule
+    CardModule,
   ],
   providers: [
-    CookieService
+    CookieService,
   ],
   bootstrap: [AppComponent]
 })
