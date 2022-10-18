@@ -1,3 +1,4 @@
+import { workflow } from './../../models/workflow.model';
 import { GetUserService } from './../services/get-user.service';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
@@ -12,6 +13,10 @@ import { User } from 'src/models/user.model';
 export class UserDashboardComponent implements OnInit {
 
   user?: User;
+  workflowTitleDialog: boolean = false;
+  workflowOpened: boolean = false;
+
+  workflows: workflow[] = [];
 
   constructor(
     private getUserService: GetUserService,
@@ -35,6 +40,29 @@ export class UserDashboardComponent implements OnInit {
   signOut() {
     this.cookieService.deleteAll();
     this.router.navigate(['/']);
+  }
+
+  nameWorkflow() {
+    this.workflowTitleDialog = true;
+  }
+
+  createWorkflow(workflowTitle: string) {
+    const workflow: workflow = {
+      workflow_id: 0,
+      title: workflowTitle
+    }
+    this.workflows.push(workflow);
+    this.workflowTitleDialog = false;
+  }
+
+  showWorkflows() {
+    if(this.workflows.length != 0) {
+      this.workflows.forEach(
+        ele => {
+
+        }
+      )
+    }
   }
 
 }

@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { SignupComponent } from './signup/signup.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
+
 
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
@@ -14,8 +16,8 @@ import {InputTextModule} from 'primeng/inputtext';
 import {CardModule} from 'primeng/card';
 import { SigninComponent } from './signin/signin.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
-import { CookieService } from 'ngx-cookie-service';
-
+import {DialogModule} from 'primeng/dialog';
+import {FileUploadModule} from 'primeng/fileupload';
 
 
 @NgModule({
@@ -35,6 +37,8 @@ import { CookieService } from 'ngx-cookie-service';
     RippleModule,
     InputTextModule,
     CardModule,
+    DialogModule,
+    FileUploadModule
   ],
   providers: [
     CookieService,
