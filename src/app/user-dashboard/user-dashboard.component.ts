@@ -1,3 +1,4 @@
+import { MenuItem } from 'primeng/api';
 import { workflow } from './../../models/workflow.model';
 import { GetUserService } from './../services/get-user.service';
 import { Router } from '@angular/router';
@@ -14,9 +15,14 @@ export class UserDashboardComponent implements OnInit {
 
   user?: User;
   workflowTitleDialog: boolean = false;
+
   workflowOpened: boolean = false;
+  openedWorkflowTitle: string = '';
 
   workflows: workflow[] = [];
+
+  documentSignSteps: MenuItem[] = [];
+  activeStep: number = 0;
 
   constructor(
     private getUserService: GetUserService,
@@ -24,6 +30,19 @@ export class UserDashboardComponent implements OnInit {
     private router: Router
   ) { }
   ngOnInit(): void {
+    this.documentSignSteps = [
+      {
+        label: 'Upload',
+        routerLink: '/upload'
+      },
+      {
+        label: 'Add members',
+      },
+      {
+        label: 'Send document'
+      }
+    ];
+
     if(this.cookieService.check('id')){
       const id: number =+ this.cookieService.get('id');
       this.getUserService.getUser(id).subscribe(
@@ -55,14 +74,9 @@ export class UserDashboardComponent implements OnInit {
     this.workflowTitleDialog = false;
   }
 
-  showWorkflows() {
-    if(this.workflows.length != 0) {
-      this.workflows.forEach(
-        ele => {
-
-        }
-      )
-    }
+  openWorkflow(workflow: workflow) {
+    this.workflowOpened = true;
+    this.openedWorkflowTitle = workflow.title;
   }
 
 }
