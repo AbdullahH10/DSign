@@ -18,14 +18,18 @@ import { SigninComponent } from './signin/signin.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import {DialogModule} from 'primeng/dialog';
 import {FileUploadModule} from 'primeng/fileupload';
-
+import {StepsModule} from 'primeng/steps';
+import { UploadDocumentComponent } from './upload-document/upload-document.component';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignupComponent,
     SigninComponent,
-    UserDashboardComponent
+    UserDashboardComponent,
+    UploadDocumentComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +42,8 @@ import {FileUploadModule} from 'primeng/fileupload';
     InputTextModule,
     CardModule,
     DialogModule,
-    FileUploadModule
+    FileUploadModule,
+    StepsModule,
   ],
   providers: [
     CookieService,
