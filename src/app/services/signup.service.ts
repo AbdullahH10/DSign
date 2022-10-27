@@ -15,7 +15,6 @@ export class SignupService {
   ) { }
 
   addUser(newUser: User): Observable<User> {
-    console.log(newUser);
     return this.http.post<User>(`${this.API_URL}/addUser`,newUser);
   }
 }

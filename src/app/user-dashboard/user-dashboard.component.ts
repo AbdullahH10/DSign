@@ -14,10 +14,11 @@ import { User } from 'src/models/user.model';
 export class UserDashboardComponent implements OnInit {
 
   user?: User;
-  workflowTitleDialog: boolean = false;
+  createWorkflowDialog: boolean = false;
 
   workflowOpened: boolean = false;
   openedWorkflowTitle: string = '';
+  workflowTitle: string = '';
 
   workflows: workflow[] = [];
 
@@ -33,7 +34,7 @@ export class UserDashboardComponent implements OnInit {
     this.documentSignSteps = [
       {
         label: 'Upload',
-        routerLink: '/upload'
+        routerLink: ['/upload/:wid'],
       },
       {
         label: 'Add members',
@@ -58,25 +59,31 @@ export class UserDashboardComponent implements OnInit {
 
   signOut() {
     this.cookieService.deleteAll();
-    this.router.navigate(['/']);
+    this.router.navigate(['/signin']);
+  }
+
+  goToSettings() {
+    this.router.navigate(['/settings']);
   }
 
   nameWorkflow() {
-    this.workflowTitleDialog = true;
+    this.createWorkflowDialog = true;
   }
 
-  createWorkflow(workflowTitle: string) {
+  createWorkflow() {
     const workflow: workflow = {
       workflow_id: 0,
-      title: workflowTitle
+      title: this.workflowTitle
     }
     this.workflows.push(workflow);
-    this.workflowTitleDialog = false;
+    this.workflowTitle = '';
+    this.createWorkflowDialog = false;
   }
 
-  openWorkflow(workflow: workflow) {
+  openWorkflow(workflow: workflow, index: number) {
     this.workflowOpened = true;
     this.openedWorkflowTitle = workflow.title;
+    this.router.navigate([`/dashboard/upload/${index}`]);
   }
 
 }

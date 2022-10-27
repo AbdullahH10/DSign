@@ -21,6 +21,7 @@ import {FileUploadModule} from 'primeng/fileupload';
 import {StepsModule} from 'primeng/steps';
 import { UploadDocumentComponent } from './upload-document/upload-document.component';
 import { SettingsComponent } from './settings/settings.component';
+import {MenuModule} from 'primeng/menu';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { SettingsComponent } from './settings/settings.component';
     DialogModule,
     FileUploadModule,
     StepsModule,
+    MenuModule
   ],
   providers: [
     CookieService,

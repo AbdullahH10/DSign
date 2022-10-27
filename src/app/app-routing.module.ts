@@ -12,7 +12,9 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: UserDashboardComponent,
-    children: [{ path: 'upload', component: UploadDocumentComponent, }]
+    children: [
+      { path: 'upload/:wid', component: UploadDocumentComponent }
+    ]
   },
   { path: 'settings', component: SettingsComponent, }
 ];
