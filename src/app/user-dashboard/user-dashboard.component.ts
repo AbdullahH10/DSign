@@ -1,3 +1,4 @@
+import { FileDownloadService } from './../services/file-download.service';
 import { MenuItem } from 'primeng/api';
 import { workflow } from './../../models/workflow.model';
 import { GetUserService } from './../services/get-user.service';
@@ -25,8 +26,11 @@ export class UserDashboardComponent implements OnInit {
   documentSignSteps: MenuItem[] = [];
   activeStep: number = 0;
 
+  uploadedFileName: string[] = [];
+
   constructor(
     private getUserService: GetUserService,
+    private fileDownloadService: FileDownloadService,
     private cookieService: CookieService,
     private router: Router
   ) { }
@@ -84,6 +88,16 @@ export class UserDashboardComponent implements OnInit {
     this.workflowOpened = true;
     this.openedWorkflowTitle = workflow.title;
     this.router.navigate([`/dashboard/upload/${index}`]);
+  }
+
+  onUploadEnd(event: { file: { name: string; }; }) {
+    console.log(event.file.name);
+    this.uploadedFileName.push(event.file.name);
+    window.location.reload();
+  }
+
+  downloadFile(name: string) {
+    this.fileDownloadService.downloadFile(name);
   }
 
 }

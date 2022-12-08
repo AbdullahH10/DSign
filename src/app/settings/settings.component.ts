@@ -12,10 +12,7 @@ import { User } from 'src/models/user.model';
 })
 export class SettingsComponent implements OnInit {
 
-  userInfo: User = {
-    email: '',
-    password: ''
-  };
+  userInfo!: User;
 
   emailFieldStatus: boolean = true;
   passwordFieldStatus: boolean = true;
@@ -77,10 +74,10 @@ export class SettingsComponent implements OnInit {
   updateUser() {
     this.updateUserService.updateUser(this.userInfo).subscribe(
       data => {
-
+        console.log(data);
       }
     )
-    window.location.reload();
+    //window.location.reload();
   }
 
 }
