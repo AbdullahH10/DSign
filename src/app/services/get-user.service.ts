@@ -16,7 +16,7 @@ export class GetUserService {
   ) { }
 
   getUser(userid: number): Observable<User> {
-    return this.http.get<User>(`${this.API_URL}/user/${userid}`);
+    return this.http.get<User>(`${this.API_URL}/users/${userid}`);
   }
 
   verifyUser(userVerification: userVerification): Observable<User> {

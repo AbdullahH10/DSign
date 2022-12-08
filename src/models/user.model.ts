@@ -1,12 +1,10 @@
 export interface User {
-  userid?: number;
+  userId?: number;
   email: string;
   password: string;
-  firstname?: string;
-  lastname?: string;
+  firstName?: string;
+  lastName?: string;
   phoneNo?: number;
   organiztion?: string;
   designation?: string;
-  profileImageLocation?: string;
-  signatureImageLocation?: string;
 }

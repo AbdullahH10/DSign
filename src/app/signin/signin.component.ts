@@ -36,7 +36,7 @@ export class SigninComponent implements OnInit {
           passwordError.hidden = false
         }
         else {
-          this.cookieService.set('id',`${data.userid}`);
+          this.cookieService.set('id',`${data.userId}`);
           this.cookieService.set('email',`${data.email}`);
           this.router.navigate(['/dashboard']);
         }

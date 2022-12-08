@@ -31,7 +31,7 @@ export class SignupComponent implements OnInit {
   addUser() {
     this.signupService.addUser(this.newUser).subscribe(
       data => {
-        this.cookieService.set('id',`${data.userid}`);
+        this.cookieService.set('id',`${data.userId}`);
         this.cookieService.set('email',`${data.email}`);
         this.router.navigate(['/dashboard']);
       }

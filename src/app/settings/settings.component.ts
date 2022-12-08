@@ -75,7 +75,7 @@ export class SettingsComponent implements OnInit {
   }
 
   updateUser() {
-    this.updateUserService.updateUser(this.userInfo,this.userInfo.userid!).subscribe(
+    this.updateUserService.updateUser(this.userInfo).subscribe(
       data => {
 
       }

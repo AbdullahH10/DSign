@@ -14,7 +14,7 @@ export class UpdateUserService {
     private http: HttpClient
   ) { }
 
-  updateUser(userInfo: User, userid: number): Observable<User> {
-    return this.http.put<User>(`API_URL/update/${userid}`,userInfo);
+  updateUser(userInfo: User): Observable<User> {
+    return this.http.put<User>(`${this.API_URL}/users`,userInfo);
   }
 }
