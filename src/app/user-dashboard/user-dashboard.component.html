@@ -69,8 +69,8 @@
           [customUpload]="false" 
           class="w-full" 
         ></p-fileUpload>
-        <button *ngFor="let name of uploadedFileName;let i = index" pButton pRipple type="button" label="{{name}}"
-          (click)="downloadFile(name)" class="p-button-outlined mt-2"></button>
+        <button *ngFor="let fileDetail of uploadedFileDetails;let i = index" pButton pRipple type="button" label="{{fileDetail.name}}"
+          (click)="downloadFile(fileDetail.name)" class="p-button-outlined mt-2"></button>
       </div>
     </div>
 

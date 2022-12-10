@@ -11,6 +11,6 @@ export class FileDownloadService {
   constructor(private http: HttpClient) { }
 
   downloadFile(fileName: string) {
-    this.http.get(`${this.API_URL}/image/fileSystem/${fileName}.pdf`);
+    return this.http.get(`${this.API_URL}/image/fileSystem/${fileName}`);
   }
 }

@@ -1,3 +1,5 @@
+import { GetAllFileDetailsService } from './../services/get-all-file-details.service';
+import { fileDetail } from './../../models/fileDetail.model';
 import { FileDownloadService } from './../services/file-download.service';
 import { MenuItem } from 'primeng/api';
 import { workflow } from './../../models/workflow.model';
@@ -26,28 +28,16 @@ export class UserDashboardComponent implements OnInit {
   documentSignSteps: MenuItem[] = [];
   activeStep: number = 0;
 
-  uploadedFileName: string[] = [];
+  uploadedFileDetails: fileDetail[] = [];
 
   constructor(
     private getUserService: GetUserService,
     private fileDownloadService: FileDownloadService,
+    private getFileDetailService: GetAllFileDetailsService,
     private cookieService: CookieService,
     private router: Router
   ) { }
   ngOnInit(): void {
-    this.documentSignSteps = [
-      {
-        label: 'Upload',
-        routerLink: ['/upload/:wid'],
-      },
-      {
-        label: 'Add members',
-      },
-      {
-        label: 'Send document'
-      }
-    ];
-
     if(this.cookieService.check('id')){
       const id: number =+ this.cookieService.get('id');
       this.getUserService.getUser(id).subscribe(
@@ -59,6 +49,12 @@ export class UserDashboardComponent implements OnInit {
     else {
       this.router.navigate(['/']);
     }
+
+    this.getFileDetailService.getAllFileDetails().subscribe(
+      data => {
+        this.uploadedFileDetails = data;
+      }
+    );
   }
 
   signOut() {
@@ -91,11 +87,6 @@ export class UserDashboardComponent implements OnInit {
   }
 
   async onSuccess(event: any, uploader: any) {
-debugger
-    for (let file of event.files) {
-      console.log(file.name);
-      this.uploadedFileName.push(file.name);
-    }
     //window.location.reload();
   }
 
@@ -119,7 +110,14 @@ debugger
 //   }
 
   downloadFile(name: string) {
-    this.fileDownloadService.downloadFile(name);
+    window.open(`http://localhost:9191/image/fileSystem/${name}`, 'blank');
   }
+
+  saveFile(data: BlobPart) {
+    const blob = new Blob([data], { type: 'application/pdf' });
+    const url= window.URL.createObjectURL(blob);
+    window.open(url);
+  }
+  
 
 }
