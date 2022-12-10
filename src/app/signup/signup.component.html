@@ -32,7 +32,7 @@
       <div class="field col-12 p-float-label">
         <input #confirmPassword type="password" name="confirmPassword" id="confirmPassword" class="w-full" pInputText>
         <label for="confirmPassword">Confirm Password</label>
-        <small *ngIf="confirmPassword.value !== newUser.password" class="p-error">Password don't match. Please re-type.</small>
+        <small *ngIf="confirmPassword.value !== newUser.password && confirmPassword.value.length;" class="p-error">Password don't match. Please re-type.</small>
       </div>
       <div *ngIf="confirmPassword.value === newUser.password && confirmPassword.value.length; else disableButton" class="field col-12 flex justify-content-end">
         <p-button (onClick)="addUser()" icon="pi pi-check-square" label="Signup"></p-button>
