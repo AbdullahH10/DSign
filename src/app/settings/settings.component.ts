@@ -12,7 +12,17 @@ import { User } from 'src/models/user.model';
 })
 export class SettingsComponent implements OnInit {
 
-  userInfo!: User;
+  userInfo: User = {
+    userId: 0,
+    email: '',
+    password: '',
+    firstName: '',
+    lastName: '',
+    phoneNo: 0,
+    organiztion: '',
+    designation: ''
+  }
+
 
   emailFieldStatus: boolean = true;
   passwordFieldStatus: boolean = true;
@@ -30,8 +40,8 @@ export class SettingsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if(this.cookieService.check('id')){
-      const id: number =+ this.cookieService.get('id');
+    if (this.cookieService.check('id')) {
+      const id: number = + this.cookieService.get('id');
       this.getUserService.getUser(id).subscribe(
         data => {
           this.userInfo = data;

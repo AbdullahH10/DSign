@@ -90,11 +90,33 @@ export class UserDashboardComponent implements OnInit {
     this.router.navigate([`/dashboard/upload/${index}`]);
   }
 
-  onUploadEnd(event: { file: { name: string; }; }) {
-    console.log(event.file.name);
-    this.uploadedFileName.push(event.file.name);
-    window.location.reload();
+  async onSuccess(event: any, uploader: any) {
+debugger
+    for (let file of event.files) {
+      console.log(file.name);
+      this.uploadedFileName.push(file.name);
+    }
+    //window.location.reload();
   }
+
+//   async onSelect(event: any) {
+// debugger
+//     if(event.currentFiles.length){
+//       console.log('on file selection');
+//     }
+//   }
+
+//   clearQueue(uploader: any) {
+// debugger
+//     if (!uploader._files.length) {
+//       console.log('on file selection');
+//     }
+//   }
+
+//   async onProgress(event: any) {
+// debugger
+//     console.log(event.progress);
+//   }
 
   downloadFile(name: string) {
     this.fileDownloadService.downloadFile(name);

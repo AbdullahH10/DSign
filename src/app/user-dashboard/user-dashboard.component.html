@@ -13,27 +13,39 @@
           <span class="text-bluegray-500 text-sm text-center">{{user?.designation}}</span>
         </div>
         <div class="user-controls p-2 flex flex-row">
-          <button pButton pRipple type="button" (click)="goToSettings()" icon="pi pi-cog" class="p-button-lg p-button-rounded mx-2"></button>
+          <button pButton pRipple type="button" (click)="goToSettings()" icon="pi pi-cog"
+            class="p-button-lg p-button-rounded mx-2"></button>
           <button pButton pRipple (click)="signOut()" type="button" icon="pi pi-sign-out"
             class="p-button-lg p-button-rounded mx-2"></button>
         </div>
       </div>
 
-      <div
+      <!-- <div
         class="workflow-menu mt-3 w-full h-content p-3 bg-white border-round-3xl shadow-5 flex flex-column align-items-stretch justify-content-stretch">
-        <p-fileUpload mode="basic" name="image" url="http://localhost:9191/image/fileSystem/" accept="application/pdf"
-        [auto]="true" (onSend)="onUploadEnd($event)" chooseLabel="Select File to Upload" class="flex"></p-fileUpload>
+        <p-fileUpload
+          #uploader
+          name="image"
+          [url]="'http://localhost:9191/image/fileSystem/'"
+          accept="application/pdf"
+          chooseLabel="Select"
+          class="flex"
+          (onProgress)="onProgress($event)"
+          (onSelect)="onSelect($event)"
+          (onUpload)="onSuccess($event, uploader)"
+          (onClear)="clearQueue(uploader)"  
+        ></p-fileUpload>
 
-        <button type="button" pButton icon="pi pi-plus" label="Create workflow" (click)="nameWorkflow()" class="mt-2"></button>
+        <button type="button" pButton icon="pi pi-plus" label="Create workflow" (click)="nameWorkflow()"
+          class="mt-2"></button>
         <button *ngFor="let name of uploadedFileName;let i = index" pButton pRipple type="button" label="{{name}}"
           (click)="downloadFile(name)" class="p-button-outlined mt-2"></button>
-      </div>
+      </div> -->
 
     </div>
 
     <div class="col-9">
       <div class="content-holder w-full min-h-screen p-3 bg-white border-round-3xl shadow-5 flex flex-column">
-        <div *ngIf="!workflowOpened"
+        <!-- <div *ngIf="!workflowOpened"
           class="flex flex-column w-full min-h-screen justify-content-center align-items-center">
           <div class="defaultWorkflowMessage">
             <span class="text-gray-600 font-bold">Open a workflow to get started.</span>
@@ -44,15 +56,28 @@
             <p-steps #signSteps [model]="documentSignSteps" [activeIndex]="activeStep"></p-steps>
           </div>
           <router-outlet></router-outlet>
-        </div>
+        </div> -->
+        <p-fileUpload
+          #uploader
+          name="image"
+          [url]="'http://localhost:9191/image/fileSystem/'"
+          accept="application/pdf"
+          chooseLabel="Select"
+          class="flex"
+          (onUpload)="onSuccess($event, uploader)"
+          (uploadHandler)="onSuccess($event, uploader)"
+          [customUpload]="false" 
+          class="w-full" 
+        ></p-fileUpload>
+        <button *ngFor="let name of uploadedFileName;let i = index" pButton pRipple type="button" label="{{name}}"
+          (click)="downloadFile(name)" class="p-button-outlined mt-2"></button>
       </div>
     </div>
 
     <p-dialog header="Workflow title" [(visible)]="createWorkflowDialog">
-      <input [(ngModel)]="workflowTitle"  type="text" class="w-25rem" pInputText />
+      <input [(ngModel)]="workflowTitle" type="text" class="w-25rem" pInputText />
       <ng-template pTemplate="footer">
-        <p-button icon="pi pi-check" (click)="createWorkflow()" label="Create"
-          styleClass="p-button-text"></p-button>
+        <p-button icon="pi pi-check" (click)="createWorkflow()" label="Create" styleClass="p-button-text"></p-button>
       </ng-template>
     </p-dialog>
   </div>
