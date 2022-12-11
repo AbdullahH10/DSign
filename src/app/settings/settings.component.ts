@@ -19,7 +19,7 @@ export class SettingsComponent implements OnInit {
     firstName: '',
     lastName: '',
     phoneNo: 0,
-    organiztion: '',
+    organization: '',
     designation: ''
   }
 
@@ -87,7 +87,7 @@ export class SettingsComponent implements OnInit {
         console.log(data);
       }
     )
-    //window.location.reload();
+    window.location.reload();
   }
 
 }

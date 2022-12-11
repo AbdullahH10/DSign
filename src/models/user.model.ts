@@ -5,6 +5,6 @@ export interface User {
   firstName?: string;
   lastName?: string;
   phoneNo?: number;
-  organiztion?: string;
+  organization?: string;
   designation?: string;
 }
